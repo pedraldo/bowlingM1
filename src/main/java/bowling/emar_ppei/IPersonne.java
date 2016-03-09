@@ -3,7 +3,7 @@ package bowling.emar_ppei;
 /**
  * Created by Neness on 09/03/2016.
  */
-public interface IPersonne {
+public interface IPersonne extends Comparable<IPersonne>{
 
     /**
      *
