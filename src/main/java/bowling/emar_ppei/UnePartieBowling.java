@@ -1,49 +1,67 @@
 package bowling.emar_ppei;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Neness on 09/03/2016.
+ *
+ * On ne calculera pas les scores intermediaires.
+ * Donc on fournit à chaque fois une sequence complete.
  */
 public class UnePartieBowling {
     /*
     Nombre de jeux par partie
      */
-    private static final int NB_JEUX = 10;
-
-    private static final int NB_QUILLES = 10;
+    public static final int NB_JEUX = 10;
 
     /*
 
      */
-    private List<InterfaceJoueur> lJoueur;
+    public static final int NB_QUILLES = 10;
+
+    /*
+     *
+     */
+    private Joueur joueur;
 
     /**
      *
      */
-    public UnePartieBowling(){
-        lJoueur = new ArrayList<>();
+    private UnJeu[] sequence;
+
+    /**
+     *
+     */
+    public UnePartieBowling(Joueur j, UnJeu[] uneSequence){
+        joueur = j;
+        this.sequence = uneSequence;
     }
 
-    public void jouerLaPartie(){
-        for (int i = 0; i < NB_JEUX; i++){
-            for (InterfaceJoueur j: lJoueur){
-                //premier essai
-                int nbQ = j.premireBoule();
-                //deuxieme essai
-                nbQ += j.deuxiemeBoule();
-                score(nbQ);
+    public boolean estUneSequenceValide(){
+        return NB_JEUX <= sequence.length && sequence.length <= 12;
+    }
+
+    private boolean tousLesQuillesSontTombées(UnJeu jeu){
+        return (jeu.getPremierEssai() + jeu.getDeuxiemeEssai()) == NB_QUILLES;
+    }
+
+    public int calculerScore() throws Exception {
+        int score = 0;
+        if (!estUneSequenceValide())
+            throw new Exception("Sequence non valide. Taille: "+ sequence.length);
+        for(int i = 0; i < NB_JEUX; i++){
+            UnJeu j = sequence[i];
+            if (tousLesQuillesSontTombées(j)){
+                if (j.estUnStrike()) {
+                    score += (10
+                            + sequence[i + 1].getPremierEssai()
+                            + sequence[i + 1].getDeuxiemeEssai());
+                } else {
+                    score += (10 + sequence[i + 1].getPremierEssai());
+                }
+            } else {
+                score += (j.getPremierEssai() + j.getDeuxiemeEssai());
             }
         }
-    }
-
-    private int score(int nbQ) {
-
-        return 0;
-    }
-
-    public int getNbQuilles() {
-        return NB_QUILLES;
+        joueur.setScore(score);
+        return score;
     }
 }

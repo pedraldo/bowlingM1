@@ -3,7 +3,7 @@ package bowling.emar_ppei;
 /**
  * Created by Neness on 09/03/2016.
  */
-public class Joueur implements InterfaceJoueur {
+public class Joueur{
     /*
 
      */
@@ -14,6 +14,11 @@ public class Joueur implements InterfaceJoueur {
      */
     private String mPrenom;
 
+    /*
+     *
+     */
+    private int mScore;
+
     /**
      *
      * @param mNom
@@ -22,30 +27,24 @@ public class Joueur implements InterfaceJoueur {
     public Joueur(String mNom, String mPrenom) {
         this.mNom = mNom;
         this.mPrenom = mPrenom;
+        this.mScore = 0;
     }
 
-    @Override
     public String getNom() {
         return this.mNom;
     }
 
-    @Override
+
     public String getPrenom() {
         return this.mPrenom;
     }
 
-    @Override
-    public int premireBoule() {
-        return 0;
+    public void setScore(int score){
+        this.mScore = score;
     }
 
     @Override
-    public int deuxiemeBoule() {
-        return 0;
-    }
-
-    @Override
-    public int compareTo(IPersonne o) {
-        return 0;
+    public String toString() {
+        return "Le joueur " + getNom() + " " + getPrenom() + " a fait un score de " + mScore;
     }
 }
