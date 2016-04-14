@@ -27,7 +27,7 @@ public class PartieBowling {
     private static final int NB_MAX_LANCERS = 21;
     //private static final int NB_FRAMES = 10;
 
-    public static String sLancers;
+    public String sLancers;
 
     public PartieBowling(String partie) {
         sLancers = partie;
@@ -37,7 +37,7 @@ public class PartieBowling {
      *
      * @return
      */
-    public static boolean nbLancersOK() {
+    public boolean nbLancersOK() {
         int nbLancers = sLancers.length();
         return (nbLancers >= NB_MIN_LANCERS && nbLancers <= NB_MAX_LANCERS);
     }
@@ -48,7 +48,7 @@ public class PartieBowling {
      * @param deuxieme
      * @return
      */
-    public static int calculScoreStrike(char premier, char deuxieme) {
+    public int calculScoreStrike(char premier, char deuxieme) {
         int score = 10;
 
         //Traitement du premier lancer à suivre
@@ -94,7 +94,7 @@ public class PartieBowling {
      * @param premier
      * @return
      */
-    public static int calculScoreSpare(char premier) {
+    public int calculScoreSpare(char premier) {
         int score = 10;
 
         //Traitement du prochain lancer
@@ -106,7 +106,7 @@ public class PartieBowling {
 
         else if (premier == '_') return score;
 
-        else score += ((int) premier);
+        else score += Integer.parseInt(""+premier);
 
 
         return score;
@@ -116,7 +116,7 @@ public class PartieBowling {
      *
      * @return
      */
-    public static int calculerScorePartie() {
+    public int calculerScorePartie() {
 
         char lancers [] = sLancers.toCharArray();
         int lancer = 0;
