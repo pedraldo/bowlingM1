@@ -11,16 +11,22 @@ import static org.junit.Assert.*;
  */
 public class PartieBowlingTest {
 
-    PartieBowling partie, partie2, partie3;
+    PartieBowling partie, partie2, partie3, partie4, partie5, partie6;
     String sPartie = "XXXXXXXXXXXX";
     String sPartie2 = "XX";
     String sPartie3 = "XXXXXXXXXXXXXXXXXXXXXXXXXX";
+    String sPartie4 = "XXXXXXXXXXXX";
+    String sPartie5 = "9_9_9_9_9_____9_9_9_";
+    String sPartie6 = "5/5/5/5/5/5/5/5/5/5/5";
 
     @Before
     public void setUp() throws Exception {
         partie = new PartieBowling(sPartie);
         partie2 = new PartieBowling(sPartie2);
         partie3 = new PartieBowling(sPartie3);
+        partie4 = new PartieBowling(sPartie4);
+        partie5 = new PartieBowling(sPartie5);
+        partie6 = new PartieBowling(sPartie6);
     }
 
     @After
@@ -41,7 +47,7 @@ public class PartieBowlingTest {
         char nextThrow2;
         int scoreResult;
 
-        //Deux strikes
+        //Deux strikescalculerScorePartie
         nextThrow1 = 'X';
         nextThrow2 = 'X';
 
@@ -103,5 +109,11 @@ public class PartieBowlingTest {
     @Test
     public void testCalculerScorePartie() throws Exception {
 
+        System.out.println(partie4.calculerScorePartie());
+        System.out.println(partie5.calculerScorePartie());
+        System.out.println(partie6.calculerScorePartie());
+        assert partie4.calculerScorePartie() == 300;
+        assert partie5.calculerScorePartie() == 72;
+        assert partie6.calculerScorePartie() == 150;
     }
 }
