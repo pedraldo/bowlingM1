@@ -37,7 +37,7 @@ public class PartieBowling {
      *
      * @return
      */
-    public static boolean nbLancersOK() {
+    public boolean nbLancersOK() {
         int nbLancers = sLancers.length();
         return (nbLancers >= NB_MIN_LANCERS && nbLancers <= NB_MAX_LANCERS);
     }
@@ -48,7 +48,7 @@ public class PartieBowling {
      * @param deuxieme
      * @return
      */
-    public static int calculScoreStrike(char premier, char deuxieme) {
+    public int calculScoreStrike(char premier, char deuxieme) {
         int score = 10;
 
         //Traitement du premier lancer à suivre
@@ -61,6 +61,15 @@ public class PartieBowling {
                 score = 30;
                 return score;
             }
+
+            //Si deuxieme aucune quille tombée
+            else if (deuxieme == '_') return score;
+
+            //Si deuxieme quelques quilles tombées
+            else {
+                score += Integer.parseInt(""+deuxieme);
+                return score;
+            }
         }
 
         //Si aucune quille tombée
@@ -69,7 +78,7 @@ public class PartieBowling {
         }
 
         //Si quilles tombées mais pas toutes
-        else score += ((int) premier);
+        else score += Integer.parseInt(""+premier);
 
 
         //Traitement du deuxième lancer à suivre
@@ -83,7 +92,7 @@ public class PartieBowling {
         else if (deuxieme == '_') return score;
 
         //Si quilles tombées mais pas toutes
-        else score += ((int) deuxieme);
+        else score += Integer.parseInt(""+deuxieme);
 
 
         return score;
@@ -94,7 +103,7 @@ public class PartieBowling {
      * @param premier
      * @return
      */
-    public static int calculScoreSpare(char premier) {
+    public int calculScoreSpare(char premier) {
         int score = 10;
 
         //Traitement du prochain lancer
@@ -106,7 +115,7 @@ public class PartieBowling {
 
         else if (premier == '_') return score;
 
-        else score += ((int) premier);
+        else score += Integer.parseInt(""+premier);
 
 
         return score;
@@ -116,7 +125,7 @@ public class PartieBowling {
      *
      * @return
      */
-    public static int calculerScorePartie() {
+    public int calculerScorePartie() {
 
         char lancers [] = sLancers.toCharArray();
         int lancer = 0;
