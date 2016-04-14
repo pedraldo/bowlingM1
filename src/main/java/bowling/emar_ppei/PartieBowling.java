@@ -27,7 +27,7 @@ public class PartieBowling {
     private static final int NB_MAX_LANCERS = 21;
     //private static final int NB_FRAMES = 10;
 
-    public static String sLancers;
+    public String sLancers;
 
     public PartieBowling(String partie) {
         sLancers = partie;
