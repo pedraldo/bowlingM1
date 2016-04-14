@@ -30,7 +30,9 @@ public class PartieBowlingTest {
 
     @Test
     public void testNbLancersOK() throws Exception {
-
+        assert partie.nbLancersOK();
+        assert !partie2.nbLancersOK();
+        assert !partie3.nbLancersOK();
     }
 
     @Test
@@ -89,7 +91,13 @@ public class PartieBowlingTest {
 
     @Test
     public void testCalculScoreSpare() throws Exception {
+        char lancer1 = 'X';
+        char lancer2 = '_';
+        char lancer3 = '5';
 
+        assert partie.calculScoreSpare(lancer1) == 20;
+        assert partie.calculScoreSpare(lancer2) == 10;
+        assert partie.calculScoreSpare(lancer3) == 15;
     }
 
     @Test
